@@ -1,0 +1,179 @@
+//Level 2:
+
+// Task 3: To-do Web App:
+
+// Html code--
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Goal Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Personal Goal Tracker</h1>
+    <div class="input-section">
+      <label for="goalTitle">Goal Title</label>
+      <input type="text" id="goalTitle" placeholder="Enter your goal title" required>
+
+      <label for="goalDescription">Description</label>
+      <textarea id="goalDescription" rows="4" placeholder="Enter goal description" required></textarea>
+      
+      <button id="saveGoalBtn">Save Goal</button>
+    </div>
+
+    <div class="goal-list-section">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="goalList"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+//CSS code--
+
+/* style.css */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #eef2f3;
+  color: #333;
+}
+
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #f8f9fa;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+td button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background-color: #c82333;
+}
+
+//JavaScript code--
+
+// script.js
+document.getElementById('saveGoalBtn').addEventListener('click', addGoal);
+
+function addGoal() {
+  const titleInput = document.getElementById('goalTitle');
+  const descriptionInput = document.getElementById('goalDescription');
+
+  const title = titleInput.value.trim();
+  const description = descriptionInput.value.trim();
+
+  if (title === '' || description === '') {
+    alert('Please fill out both fields.');
+    return;
+  }
+
+  addGoalToTable(title, description);
+
+  titleInput.value = '';
+  descriptionInput.value = '';
+}
+
+function addGoalToTable(title, description) {
+  const goalList = document.getElementById('goalList');
+
+  const row = document.createElement('tr');
+  
+  // Title Column
+  const titleCell = document.createElement('td');
+  titleCell.textContent = title;
+  row.appendChild(titleCell);
+  
+  // Description Column
+  const descriptionCell = document.createElement('td');
+  descriptionCell.textContent = description;
+  row.appendChild(descriptionCell);
+  
+  // Delete Button Column
+  const deleteCell = document.createElement('td');
+  const deleteBtn = document.createElement('button');
+  deleteBtn.textContent = 'X';
+  deleteBtn.addEventListener('click', () => {
+    row.remove();
+  });
+  deleteCell.appendChild(deleteBtn);
+  row.appendChild(deleteCell);
+
+  goalList.appendChild(row);
+}
