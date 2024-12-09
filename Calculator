@@ -4,163 +4,150 @@
 
 //Html code--
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calculator</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <div class="calculator">
-    <div class="display" id="display">0</div>
-    <div class="buttons">
-      <button class="btn" onclick="appendNumber('7')">7</button>
-      <button class="btn" onclick="appendNumber('8')">8</button>
-      <button class="btn" onclick="appendNumber('9')">9</button>
-      <button class="btn operator" onclick="setOperation('+')">+</button>
-      
-      <button class="btn" onclick="appendNumber('4')">4</button>
-      <button class="btn" onclick="appendNumber('5')">5</button>
-      <button class="btn" onclick="appendNumber('6')">6</button>
-      <button class="btn operator" onclick="setOperation('-')">-</button>
-      
-      <button class="btn" onclick="appendNumber('1')">1</button>
-      <button class="btn" onclick="appendNumber('2')">2</button>
-      <button class="btn" onclick="appendNumber('3')">3</button>
-      <button class="btn operator" onclick="setOperation('*')">×</button>
-      
-      <button class="btn" onclick="clearDisplay()">C</button>
-      <button class="btn" onclick="appendNumber('0')">0</button>
-      <button class="btn" onclick="calculate()">=</button>
-      <button class="btn operator" onclick="setOperation('/')">÷</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Advanced Calculator</title> 
+  <link rel="stylesheet" href="styles.css"> 
+ </head> 
+ <body> 
+  <div class="calculator"> 
+   <div class="display"> 
+    <div id="expression">
+      12 * 10 + 3 
+    </div> 
+    <div id="result">
+      123 
+    </div> 
+   </div> 
+   <div class="buttons"> <button class="btn" onclick="appendSymbol('(')">(</button> <button class="btn" onclick="appendSymbol(')')">)</button> <button class="btn" onclick="calculateAnswer()">ans</button> <button class="btn" onclick="deleteLast()">del</button> <button class="btn" onclick="clearDisplay()">clear</button> <button class="btn" onclick="appendSymbol('7')">7</button> <button class="btn" onclick="appendSymbol('8')">8</button> <button class="btn" onclick="appendSymbol('9')">9</button> <button class="btn" onclick="appendSymbol('%')">%</button> <button class="btn" onclick="appendSymbol('√')">√</button> <button class="btn" onclick="appendSymbol('4')">4</button> <button class="btn" onclick="appendSymbol('5')">5</button> <button class="btn" onclick="appendSymbol('6')">6</button> <button class="btn" onclick="appendSymbol('*')">×</button> <button class="btn" onclick="appendSymbol('/')">÷</button> <button class="btn" onclick="appendSymbol('1')">1</button> <button class="btn" onclick="appendSymbol('2')">2</button> <button class="btn" onclick="appendSymbol('3')">3</button> <button class="btn" onclick="appendSymbol('+')">+</button> <button class="btn" onclick="appendSymbol('-')">−</button> <button class="btn" onclick="appendSymbol('.')">.</button> <button class="btn" onclick="appendSymbol('0')">0</button> <button class="btn enter" onclick="calculate()">ENTER</button> 
+   </div> 
+  </div> 
+  <script src="script.js"></script> 
+ </body>
 </html>
-
 
 //CSS code--
 
 /* styles.css */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
+  background-color: #6699cc;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f0f0;
   margin: 0;
 }
 
 .calculator {
-  background-color: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 300px;
-  padding: 10px;
+  background-color: #e6f3ff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .display {
-  background-color: #222;
-  color: #0f0;
-  font-size: 2rem;
-  padding: 10px;
-  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
   text-align: right;
-  margin-bottom: 10px;
-  min-height: 50px;
+}
+
+#expression {
+  color: #555;
+  font-size: 1.2em;
+}
+
+#result {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: #333;
 }
 
 .buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
 }
 
 .btn {
-  background-color: #444;
-  color: white;
-  border: none;
-  font-size: 1.2rem;
+  background-color: #fff;
+  border: 2px solid #d9e2ec;
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  text-align: center;
+  transition: background 0.2s;
 }
 
 .btn:hover {
-  background-color: #666;
+  background-color: #dceefb;
 }
 
-.operator {
-  background-color: #007BFF;
+.enter {
+  background-color: #007acc;
+  color: white;
+  grid-column: span 2;
 }
 
-.operator:hover {
-  background-color: #0056b3;
+.enter:hover {
+  background-color: #005f99;
 }
 
 
 //JavaScript code--
 
 // script.js
-let display = document.getElementById('display');
-let firstOperand = '';
-let secondOperand = '';
-let currentOperation = null;
 
-function appendNumber(number) {
-  if (display.innerText === '0' || currentOperation === '=') {
-    display.innerText = number;
-    currentOperation = null;
+let expression = '';
+let result = '';
+
+function appendSymbol(symbol) {
+  if (symbol === '√') {
+    expression += 'Math.sqrt(';
   } else {
-    display.innerText += number;
+    expression += symbol;
   }
+  updateDisplay();
 }
 
-function setOperation(operator) {
-  if (currentOperation) {
-    calculate();
-  }
-  firstOperand = display.innerText;
-  currentOperation = operator;
-  display.innerText = '';
-}
-
-function calculate() {
-  if (!firstOperand || !currentOperation || display.innerText === '') return;
-
-  secondOperand = display.innerText;
-  let result;
-  switch (currentOperation) {
-    case '+':
-      result = parseFloat(firstOperand) + parseFloat(secondOperand);
-      break;
-    case '-':
-      result = parseFloat(firstOperand) - parseFloat(secondOperand);
-      break;
-    case '*':
-      result = parseFloat(firstOperand) * parseFloat(secondOperand);
-      break;
-    case '/':
-      result = parseFloat(secondOperand) !== 0
-        ? parseFloat(firstOperand) / parseFloat(secondOperand)
-        : 'Error';
-      break;
-    default:
-      return;
-  }
-  display.innerText = result;
-  firstOperand = result;
-  currentOperation = '=';
+function deleteLast() {
+  expression = expression.slice(0, -1);
+  updateDisplay();
 }
 
 function clearDisplay() {
-  display.innerText = '0';
-  firstOperand = '';
-  secondOperand = '';
-  currentOperation = null;
+  expression = '';
+  result = '';
+  updateDisplay();
+}
+
+function calculate() {
+  try {
+    // Safely evaluate the expression
+    result = eval(expression.replace('÷', '/').replace('×', '*'));
+  } catch (error) {
+    result = 'Error';
+  }
+  updateDisplay();
+}
+
+function calculateAnswer() {
+  if (result !== '') {
+    expression = result.toString();
+    result = '';
+    updateDisplay();
+  }
+}
+
+function updateDisplay() {
+  document.getElementById('expression').textContent = expression || '0';
+  document.getElementById('result').textContent = result || '';
 }
