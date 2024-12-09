@@ -3,51 +3,41 @@
 //Task 2: Tribute page
 
 // Html code--
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tribute to Marie Curie</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Header Section -->
-        <header>
-            <h1>Marie Curie</h1>
-            <p class="years">1867 - 1934</p>
-        </header>
-
-        <!-- Main Section -->
-        <main>
-            <div class="quote-section">
-                <p class="quote">"Nothing in life is to be feared, it is only to be understood."</p>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Marie_Curie_c1920.jpg" alt="Marie Curie">
-            </div>
-
-            <div class="biography-section">
-                <h2>Biography</h2>
-                <p>
-                    Marie Curie was a physicist and chemist who conducted groundbreaking research on radioactivity. She was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two scientific fields: physics and chemistry.
-                </p>
-                <p>
-                    Her discoveries of the elements polonium and radium revolutionized the understanding of radioactivity and paved the way for modern medical advancements like X-rays. Her work remains a testament to the power of perseverance, curiosity, and intellect.
-                </p>
-            </div>
-        </main>
-
-        <!-- Footer Section -->
-        <footer>
-            <p>Made with ❤️ by Aman</p>
-        </footer>
-    </div>
-</body>
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Tribute to Marie Curie</title> 
+  <link rel="stylesheet" href="styles.css"> 
+ </head> 
+ <body> 
+  <div class="container"> <!-- Header Section --> 
+   <header> 
+    <h1>Marie Curie</h1> 
+    <p class="years">1867 - 1934</p> 
+   </header> <!-- Main Section --> 
+   <main> 
+    <div class="quote-section"> 
+     <p class="quote">"Nothing in life is to be feared, it is only to be understood."</p> 
+     <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Marie_Curie_c1920.jpg" alt="Marie Curie"> 
+    </div> 
+    <div class="biography-section"> 
+     <h2>Biography</h2> 
+     <p> Marie Curie was a physicist and chemist who conducted groundbreaking research on radioactivity. She was the first woman to win a Nobel Prize and remains the only person to win Nobel Prizes in two scientific fields: physics and chemistry. </p> 
+     <p> Her discoveries of the elements polonium and radium revolutionized the understanding of radioactivity and paved the way for modern medical advancements like X-rays. Her work remains a testament to the power of perseverance, curiosity, and intellect. </p> 
+    </div> 
+   </main> <!-- Footer Section --> 
+   <footer> 
+    <p>Made with ❤️ by Aman</p> 
+   </footer> 
+  </div> 
+ </body>
 </html>
 
 //CSS code--
 
+/* General Reset */
 /* General Reset */
 * {
     margin: 0;
