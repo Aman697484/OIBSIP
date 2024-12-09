@@ -4,7 +4,6 @@
 
 //Python code--
 
-# Simple Login Authentication System
 import hashlib
 
 # Database simulation (in-memory)
@@ -14,53 +13,66 @@ def hash_password(password):
     """Hash a password for secure storage."""
     return hashlib.sha256(password.encode()).hexdigest()
 
+def print_header():
+    """Display a styled header."""
+    print("=" * 50)
+    print(" " * 12 + "Welcome to Login System")
+    print("=" * 50)
+
 def register_user():
     """Register a new user."""
-    username = input("Enter a username: ")
+    print("\n[ Register ]")
+    username = input("Enter a username: ").strip()
     if username in users_db:
-        print("Username already exists! Try a different one.")
+        print("Error: Username already exists! Try a different one.")
         return
-    password = input("Enter a password: ")
+    password = input("Enter a password: ").strip()
+    if not username or not password:
+        print("Error: Username and password cannot be empty!")
+        return
     users_db[username] = hash_password(password)
-    print("Registration successful!")
+    print("Success: Registration successful!")
 
 def login_user():
     """Authenticate a user."""
-    username = input("Enter your username: ")
+    print("\n[ Login ]")
+    username = input("Enter your username: ").strip()
     if username not in users_db:
-        print("Username not found! Please register first.")
+        print("Error: Username not found! Please register first.")
         return False
-    password = input("Enter your password: ")
+    password = input("Enter your password: ").strip()
     if users_db[username] == hash_password(password):
-        print("Login successful!")
+        print("Success: Login successful!")
+        secured_page()
         return True
     else:
-        print("Incorrect password!")
+        print("Error: Incorrect password!")
         return False
 
 def secured_page():
     """Access the secured page."""
+    print("\n[ Secured Page ]")
     print("Welcome to the secured page! Only logged-in users can see this.")
 
 def main():
     """Main menu."""
     while True:
-        print("\nMenu:")
+        print_header()
+        print("Menu:")
         print("1. Register")
         print("2. Login")
         print("3. Exit")
-        choice = input("Enter your choice: ")
+        choice = input("Enter your choice: ").strip()
         
         if choice == '1':
             register_user()
         elif choice == '2':
-            if login_user():
-                secured_page()
+            login_user()
         elif choice == '3':
-            print("Exiting...")
+            print("Thank you for using the Login System. Goodbye!")
             break
         else:
-            print("Invalid choice! Please try again.")
+            print("Error: Invalid choice! Please try again.")
 
 if __name__ == "__main__":
     main()
